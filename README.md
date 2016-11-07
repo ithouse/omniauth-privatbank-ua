@@ -16,6 +16,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :'privatbank-ua', ENV['ua_privatbank_client_id'], ENV['ua_privatbank_client_secret'],
       private_key_path: ENV['ua_privatbank_client_private_key_path']
   else
+    #for some reason in development we get ssl verification errors
+    require 'openssl'
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
     provider OmniAuth::Strategies::PrivatbankUaSandbox, ENV['ua_privatbank_client_id'], ENV['ua_privatbank_client_secret'],
       private_key_path: ENV['ua_privatbank_client_private_key_path']
   end

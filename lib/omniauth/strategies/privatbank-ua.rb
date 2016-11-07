@@ -127,9 +127,6 @@ module OmniAuth
     end
 
     class PrivatbankUaSandbox < OmniAuth::Strategies::PrivatbankUa
-      #for some reason in development we get ssl verification errors
-      require 'openssl'
-      OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
       # for testing against their test servers,
       # to test data decryption make sure you have the PrivatBank public/secret keys from  production
       SANDBOX_OAUTH_DOMAIN = 'https://bankid.privatbank.ua'
